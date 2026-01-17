@@ -1,0 +1,26 @@
+name: Docker Build CI
+
+# Should run on pushes to the main branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Preuzmi kod sa GitHub-a
+      uses: actions/checkout@v4
+
+    - name: Pokušaj da napraviš Docker sliku
+      run: |
+        docker build -t test-provera:latest .
+        echo "Docker slika je uspešno build-ovana!"
+
+    - name: Proveri Docker Compose
+      run: |
+        docker compose config
+        echo "Docker Compose fajl je ispravan!"
