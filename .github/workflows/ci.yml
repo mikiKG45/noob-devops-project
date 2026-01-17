@@ -17,10 +17,10 @@ jobs:
 
     - name: Try to build Docker image
       run: |
-        docker build -t test-provera:latest .
+        docker build -t test-provera:latest ./application
         echo "Docker image successfully built!"
 
     - name: Verify Docker Compose
       run: |
-        docker compose config
+        docker compose -f ./application/docker-compose.yaml config
         echo "Docker Compose file is valid!"
