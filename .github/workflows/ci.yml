@@ -12,15 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Preuzmi kod sa GitHub-a
+    - name: Download code from Github repository
       uses: actions/checkout@v4
 
-    - name: Pokušaj da napraviš Docker sliku
+    - name: Try to build Docker image
       run: |
         docker build -t test-provera:latest .
-        echo "Docker slika je uspešno build-ovana!"
+        echo "Docker image successfully built!"
 
-    - name: Proveri Docker Compose
+    - name: Verify Docker Compose
       run: |
         docker compose config
-        echo "Docker Compose fajl je ispravan!"
+        echo "Docker Compose file is valid!"
