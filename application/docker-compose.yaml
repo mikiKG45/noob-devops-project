@@ -1,0 +1,13 @@
+services:
+  application:
+    build: .
+    image: app-image
+    working_dir: /application
+    command: python application.py
+  time_checker:
+    build: .
+    working_dir: /application
+    command: python timeChecker.py
+    depends_on:
+      application:
+        condition: service_completed_successfully
